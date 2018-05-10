@@ -19,8 +19,8 @@ export class BusStop extends MongoModel {
         
         // neo4jSession
         neo4jSession.run(
-            'MERGE (james:Person {name : {nameParam} }) RETURN james.name AS name',
-            { nameParam: 'James' }
+            CREATE (bussStop.name, { id: busStop._id })
+
         ).then(function (result) {
             console.log('Neo4j Result', result)
             // result.records.forEach(function (record) {

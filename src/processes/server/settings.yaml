@@ -123,11 +123,8 @@ httpServers:
                                     db: '$db'
                                     model: '$models/BusLine'
                                     transaction: 'findAll'
-                    #  Como hago un servicio que me devuelva todas las lineas de Bus por Paradero? <----- PREGUNTA
-
-                                    
-                    #  Como voy agregando las paradas de autobus? <----- PREGUNTA
-                    # Bus Lines
+                   
+                   # Bus Lines
                     -   method: 'POST'
                         path: '/busLine'
                         pipeline:
