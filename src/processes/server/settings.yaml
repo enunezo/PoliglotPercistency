@@ -1,0 +1,80 @@
+
+vars:
+    httpPort: 8000
+    dbUrl: 'mongodb://demo:demo@ds119350.mlab.com:19350/demo-negrita'
+    dbName: 'demo-negrita'
+    neo4jUrl: 'https://hobby-gpeommhdkkbegbkeojkpifal.dbs.graphenedb.com:24780/db/data/'
+    neo4jUser: 'demonegrita'
+    neo4jPassword: 'b.pvekV9Ks6pdI.iL5MaG7icFNEgIma'
+
+httpServers:
+    -   name: 'server'
+        ports:
+            http: '$httpPort'
+        routers:
+
+            -   name: 'webapps'
+                description: 'Webapps Router'
+                path: '/'
+                routes:
+
+                    # Demo service
+                    -   method: 'GET'
+                        path: '/'
+                        pipeline:
+                            -   staticsPath: '$demo-webapp'
+
+            -   name: 'api'
+                description: 'API Router'
+                path: '/api'
+                routes:
+
+                    # Demo service
+                    -   method: 'GET'
+                        path: '/demo'
+                        pipeline:
+                            -   handler: '$demo-handler'
+
+                    # Get Speakers
+                    -   method: 'GET'
+                        path: '/speakers'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/Speaker'
+                                    transaction: 'findAll'
+                                    
+                    # Speakers
+                    -   method: 'POST'
+                        path: '/speakers'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/Speaker'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        -   '&body'
+                    
+                    # Get Speakers
+                    -   method: 'GET'
+                        path: '/conferences'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/Conference'
+                                    transaction: 'findAll'
+                                    
+                    # Speakers
+                    -   method: 'POST'
+                        path: '/conferences'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/Conference'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        -   '&body'
