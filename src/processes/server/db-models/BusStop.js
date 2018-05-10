@@ -10,7 +10,7 @@ export class BusStop extends MongoModel {
                 // Array of Bus Lines Ids
                 busLines: { type: 'array' }
             },
-            required: [name]
+            required: ['name']
         }, {});
     }
 

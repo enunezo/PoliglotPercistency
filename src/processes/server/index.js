@@ -5,6 +5,8 @@ import path from 'path';
 import fs from 'fs';
 import { Speaker } from './db-models/Speaker';
 import { Conference } from './db-models/Conference';
+import { BusLine } from './db-models/BusLine';
+import { BusStop } from './db-models/BusStop';
 import { connectMongoDb } from 'n158/services';
 import createNeo4jSession from './services/createNeo4jSession';
 
@@ -24,8 +26,8 @@ processHandler.set('demo-webapp', path.join(__dirname, './webapps/home'));
 // Setup models
 processHandler.set('models/Speaker', Speaker);
 processHandler.set('models/Conference', Conference);
-processHandler.set('models/BusLine', BusLine);
 processHandler.set('models/BusStop', BusStop);
+processHandler.set('models/BusLine', BusLine);
 
 // Setup handlers
 processHandler.set('handlers/modelMongoTransaction', modelMongoTransaction);

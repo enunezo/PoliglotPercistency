@@ -101,9 +101,6 @@ httpServers:
                                     transactionParams:
                                         -   '&params.busStopId'
                                         -   '&params.busLineId'
-
-                    #  Como voy agregando las lineas de bus? <----- PREGUNTA             
-                    
                     # Bus Stops
                     -   method: 'POST'
                         path: '/busStop'
@@ -118,7 +115,7 @@ httpServers:
 
                     # Get Bus Lines
                     -   method: 'GET'
-                        path: '/busLines'
+                        path: '/busLine'
                         pipeline:
                             -   handler: '$handlers/modelMongoTransaction'
                                 params:
@@ -131,7 +128,7 @@ httpServers:
                     #  Como voy agregando las paradas de autobus? <----- PREGUNTA
                     # Bus Lines
                     -   method: 'POST'
-                        path: '/busLines'
+                        path: '/busLine'
                         pipeline:
                             -   handler: '$handlers/modelMongoTransaction'
                                 params:

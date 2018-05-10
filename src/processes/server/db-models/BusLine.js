@@ -5,13 +5,9 @@ export class BusLine extends MongoModel {
     constructor (db) {
         super(db, 'busLine', {
             properties: {
-                name: { type: 'string' },
-                //Bus Stop Id
-                from: { type: 'string' },
-                //Bus Stop Id
-                to: {type: 'string' }
+                name: { type: 'string' }
             },
-            required: ['name', 'from', 'to']
+            required: ['name']
         }, {});
     }
 
