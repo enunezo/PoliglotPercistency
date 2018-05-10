@@ -14,7 +14,22 @@ export class BusStop extends MongoModel {
         }, {});
     }
 
-    register (data) {
+    registerIncludingNeo4j (data, neo4jSession) {
+        console.log('neo4jSession', neo4jSession);
+        
+        // neo4jSession
+        neo4jSession.run(
+            'MERGE (james:Person {name : {nameParam} }) RETURN james.name AS name',
+            { nameParam: 'James' }
+        ).then(function (result) {
+            console.log('Neo4j Result', result)
+            // result.records.forEach(function (record) {
+            //     console.log(record.get('name'));
+            // });
+        }).catch(function (error) {
+            console.log(error);
+        });
+        
         data.busLines = [];
         return super.register(data);
     }

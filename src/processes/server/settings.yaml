@@ -109,9 +109,10 @@ httpServers:
                                 params:
                                     db: '$db'
                                     model: '$models/BusStop'
-                                    transaction: 'register'
+                                    transaction: 'registerIncludingNeo4j'
                                     transactionParams:
                                         -   '&body'
+                                        -   '$neo4jSession'
 
                     # Get Bus Lines
                     -   method: 'GET'
