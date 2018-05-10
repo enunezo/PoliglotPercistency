@@ -57,7 +57,7 @@ httpServers:
                                     transactionParams:
                                         -   '&body'
                     
-                    # Get Speakers
+                    # Get Conferences
                     -   method: 'GET'
                         path: '/conferences'
                         pipeline:
@@ -67,7 +67,7 @@ httpServers:
                                     model: '$models/Conference'
                                     transaction: 'findAll'
                                     
-                    # Speakers
+                    # Conferences
                     -   method: 'POST'
                         path: '/conferences'
                         pipeline:
@@ -75,6 +75,53 @@ httpServers:
                                 params:
                                     db: '$db'
                                     model: '$models/Conference'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        -   '&body'
+
+                    # Get Bus Stops
+                    -   method: 'GET'
+                        path: '/busStop'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/BusStop'
+                                    transaction: 'findAll'
+                    #  Como voy agregando las lineas de bus? <----- PREGUNTA             
+                    # Bus Stops
+                    -   method: 'POST'
+                        path: '/busStop'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/BusStop'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        -   '&body'
+
+                    # Get Bus Lines
+                    -   method: 'GET'
+                        path: '/busLines'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/BusLine'
+                                    transaction: 'findAll'
+                    #  Como hago un servicio que me devuelva todas las lineas de Bus por Paradero? <----- PREGUNTA
+
+                                    
+                    #  Como voy agregando las paradas de autobus? <----- PREGUNTA
+                    # Bus Lines
+                    -   method: 'POST'
+                        path: '/busLines'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/BusLine'
                                     transaction: 'register'
                                     transactionParams:
                                         -   '&body'

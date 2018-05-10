@@ -24,6 +24,8 @@ processHandler.set('demo-webapp', path.join(__dirname, './webapps/home'));
 // Setup models
 processHandler.set('models/Speaker', Speaker);
 processHandler.set('models/Conference', Conference);
+processHandler.set('models/BusLine', BusLine);
+processHandler.set('models/BusStop', BusStop);
 
 // Setup handlers
 processHandler.set('handlers/modelMongoTransaction', modelMongoTransaction);
