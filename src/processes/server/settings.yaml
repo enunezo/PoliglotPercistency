@@ -88,7 +88,22 @@ httpServers:
                                     db: '$db'
                                     model: '$models/BusStop'
                                     transaction: 'findAll'
+
+                    # Add bus line to bus stop
+                    -   method: 'PUT'
+                        path: '/busStop/:busStopId/busLine/:busLineId'
+                        pipeline:
+                            -   handler: '$handlers/modelMongoTransaction'
+                                params:
+                                    db: '$db'
+                                    model: '$models/BusStop'
+                                    transaction: 'addBusLine'
+                                    transactionParams:
+                                        -   '&params.busStopId'
+                                        -   '&params.busLineId'
+
                     #  Como voy agregando las lineas de bus? <----- PREGUNTA             
+                    
                     # Bus Stops
                     -   method: 'POST'
                         path: '/busStop'
